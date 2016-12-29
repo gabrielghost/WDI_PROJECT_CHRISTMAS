@@ -1,0 +1,17 @@
+<% if (error) { %>
+<div class="elert alert-danger text-center" role="alert"><%= error %></div>
+<% } %>
+<section class="container">
+  <form class="" action="/artists" method="post">
+  <div class="form-group">
+          <label for="name"></label>
+      <input type="text" class="form-control" id="name" name="artist[name]" placeholder="name">
+  </div>
+  <%# <div class="form-group">
+    <label for="artwork">Artwork</label>
+    <input type="file" class="form-control" id="artwork" name="album[artwork]">
+    <p class="help-block"></p>
+  </div>%>
+  <button type="submit" class="btn btn-primary" name="button">Submit</button>
+  </form>
+</section>

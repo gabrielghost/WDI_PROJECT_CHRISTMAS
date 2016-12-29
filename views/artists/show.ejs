@@ -1,0 +1,16 @@
+<% if (error) { %>
+  <div class="alert alert-danger text-center" role="alert"><%= error %></div>
+<% } %>
+<section class="container">
+  <h3><%= artist.name %></h3>
+  <h3><%= artist._id %></h3>
+  <ul class="list-inline">
+    <li><a class="btn btn-primary" href="/artists/<%= artist._id %>/edit">Edit</a></li>
+    <li>
+      <form action="/artists/<%= artist._id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </li>
+  </ul>
+</section>

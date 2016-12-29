@@ -1,0 +1,33 @@
+<% if (error) { %>
+<div class="elert alert-danger text-center" role="alert"><%= error %></div>
+<% } %>
+<section class="container">
+  <form class="" action="/tracks" method="post">
+  <div class="form-group">
+          <label for="title"></label>
+      <input type="text" class="form-control" id="title" name="track[title]" placeholder="title">
+  </div>
+  <div class="form-group">
+          <label for="track_number"></label>
+      <input type="number" class="form-control" id="track_number" name="track[track_number]" placeholder="track number">
+  </div>
+  <div class="form-group">
+          <label for="duration"></label>
+      <input type="number" class="form-control" id="duration" name="track[duration]" placeholder="duration">
+  </div>
+  <div class="form-group">
+    <label for="album_name">Album name</label>
+    <select class="form-control" id="album_name" name="album[album_name]">
+      <% albums.forEach(album => { %>
+        <option value="<%= album._id %>"><%= album.album_name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <%# <div class="form-group">
+    <label for="artwork">Artwork</label>
+    <input type="file" class="form-control" id="artwork" name="album[artwork]">
+    <p class="help-block"></p>
+  </div>%>
+  <button type="submit" class="btn btn-primary" name="button">Submit</button>
+  </form>
+</section>

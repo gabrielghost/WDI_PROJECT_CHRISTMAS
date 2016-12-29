@@ -1,0 +1,13 @@
+<% if (error) { %>
+<div class="elert alert-danger text-center" role="alert"><%= error %></div>
+<% } %>
+<section class="container">
+  <form action="/artists/<%= artist._id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+  <div class="form-group">
+          <label for="name">name</label>
+      <input type="text" value='<%= artist.name %>' class="form-control" id="name" name="artist[name]" placeholder="name">
+  </div>
+  <button type="submit" class="btn btn-primary" name="button">Update</button>
+  </form>
+</section>

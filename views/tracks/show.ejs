@@ -1,0 +1,20 @@
+<% if (error) { %>
+  <div class="alert alert-danger text-center" role="alert"><%= error %></div>
+<% } %>
+<section class="container">
+  <h3><%= track.title %></h3>
+  <h3><%= track.track_number %></h3>
+  <h3><%= track.duration %></h3>
+  <h3><%= album.album_name %></h3>
+  <ul class="list-inline">
+    <li><a class="btn btn-primary" href="/tracks/<%= track._id %>/edit">Edit</a></li>
+    <li>
+    <li><a class="btn btn-primary" href="/tracks/<%= track._id %>/edit">Edit</a></li>
+    <li>
+      <form action="/tracks/<%= track._id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </li>
+  </ul>
+</section>

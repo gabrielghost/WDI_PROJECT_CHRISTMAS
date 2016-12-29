@@ -1,0 +1,40 @@
+<% if (error) { %>
+<div class="elert alert-danger text-center" role="alert"><%= error %></div>
+<% } %>
+<section class="container">
+  <form action="/albums/<%= album._id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+  <div class="form-group">
+          <label for="album_name">Album name</label>
+      <input type="text" value='<%= album.album_name %>' class="form-control" id="album_name" name="album[album_name]" placeholder="album name">
+  </div>
+  <div class="form-group">
+          <label for="artist_name">Artist Name</label>
+      <input value='<%= album.artist_name %>'type="text" class="form-control" id="artist_name" name="album[artist_name]" placeholder="artist name">
+  </div>
+   <div class="form-group">
+     <label for="artist_name">Artist (db)</label>
+     <select class="form-control" id="artist_name" name="album[name]">
+       <% artists.forEach(artist => { %>
+         <option value="<%= artist._id %>" <%= album.artist.toString() === artist._id.toString() ? "selected" : "" %>><%= artist.name %></option>
+       <% }) %>
+     </select>
+   </div>
+  <div class="form-group">
+          <label for="artwork">Artwork</label>
+      <input value='<%= album.artwork %>' type="text" class="form-control" id="artwork" name="album[artwork]" placeholder="artwork">
+  </div>
+  <div class="form-group">
+          <label for="comments"></label>
+      <textarea type="text" class="form-control" id="comments" name="album[comments]" placeholder="comments"></textarea>
+      <div class="form-group">
+  </div>
+
+  <%# <div class="form-group">
+    <label for="artwork">Artwork</label>
+    <input type="file" class="form-control" id="artwork" name="album[artwork]">
+    <p class="help-block"></p>
+  </div>%>
+  <button type="submit" class="btn btn-primary" name="button">Update</button>
+  </form>
+</section>
