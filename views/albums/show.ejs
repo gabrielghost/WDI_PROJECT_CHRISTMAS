@@ -2,31 +2,30 @@
   <div class="alert alert-danger text-center" role="alert"><%= error %></div>
 <% } %>
 <section class="container">
-  <img src=<%= album.artwork %> height="100">
-  <h3><%= album.album_name %></h3>
-  <h3><a href="/artists/<%= album.artist._id %>"><%= album.artist.name %></a></h3>
-  <ul class="list-inline">
-    <li><a class="btn btn-primary" href="/albums/<%= album._id %>/edit">Edit</a></li>
-    <li>
-      <form action="/albums/<%= album._id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button class="btn btn-danger">Delete</button>
-      </form>
-    </li>
-  </ul>
-  <h2>Add track</h2>
-    <form action="/albums/<%= album._id %>/tracks" method="post">
-      <div class="form-group">
-        <label for="track_name">track name</label>
-        <input type="text" class="form-control" id="track_name" name="track[track_name]" placeholder="track name">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-    <h2>Tracklist</h2>
-    <ul class="list-unstyled">
+  <div class="album_info">
+    <img src=<%= album.artwork %> height="100">
+    <h3><%= album.album_name %></h3>
+    <h3><a href="/artists/<%= album.artist._id %>"><%= album.artist.name %></a></h3>
+    <ul class="list-inline">
+      <li><a class="btn btn-primary" href="/albums/<%= album._id %>/edit">Edit</a></li>
+      <li>
+        <form action="/albums/<%= album._id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <div class="album_tracks">
+    <ul class="list-tracks">
       <% album.tracks.forEach(track => { %>
-        <li><%= track.track_name %></li>
+        <ul class='track'>
+        <li class='col-md-1'><%= track.track_number %></li>
+        <li class='col-md-9'><%= track.track_name %></li>
+        <li class='col-md-2'><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></li>
+        </ul>
       <% }) %>
     </ul>
+  </div>
+
 </section>

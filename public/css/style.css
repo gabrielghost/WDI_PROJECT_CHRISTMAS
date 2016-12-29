@@ -1,8 +1,1 @@
-body{
-  background-color: #fff8e7;
-  font-family: monospace;
-  font-size: 12px;
-}
-footer{
-  text-align: center;
-}
+.album_info,.album_tracks{display:inline-block}body{background-color:#fff8e7;font-family:monospace;font-size:12px}footer{text-align:center}.album_tracks{width:80%}.album_tracks li{list-style:none}.track{display:block;width:80%;height:20px}

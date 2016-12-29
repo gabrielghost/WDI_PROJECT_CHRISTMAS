@@ -29,26 +29,38 @@
       <textarea type="text" class="form-control" id="comments" name="album[comments]" placeholder="comments"></textarea>
       <div class="form-group">
   </div>
+  <button type="submit" class="btn btn-primary" name="button">Update</button>
+  </form>
+  <div class="album_tracks">
+    <ul class="list-tracks">
+      <% album.tracks.forEach(track => { %>
+        <ul class='track'>
+        <li class='col-md-1'><%= track.track_number %></li>
+        <li class='col-md-9'><%= track.track_name %></li>
+        <li class='col-md-2'><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></li>
+        </ul>
+      <% }) %>
+    </ul>
+  </div>
   <h2>Add track</h2>
     <form action="/albums/<%= album._id %>/tracks" method="post">
       <div class="form-group">
         <label for="track_name">track name</label>
-        <input type="text" class="form-control" id="track_name" name="tracks[name]" placeholder="track name">
+        <input type="text" class="form-control" id="track_name" name="track[track_name]" placeholder="track name">
+      </div>
+        <label for="track_duration">track duration</label>
+        <input type="number" class="form-control" id="track_duration" name="track[track_duration]" placeholder="track duration">
+      </div>
+      </div>
+        <label for="track_number">track number</label>
+        <input type="number" class="form-control" id="track_number" name="track[track_number]" placeholder="track number">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-    <h2>Other tracks</h2>
-    <ul class="list-unstyled">
-      <% album.tracks.forEach(track => { %>
-        <li><%= tracks.track_name %></li>
-      <% }) %>
-    </ul>
   <%# <div class="form-group">
     <label for="artwork">Artwork</label>
     <input type="file" class="form-control" id="artwork" name="album[artwork]">
     <p class="help-block"></p>
   </div>%>
-  <button type="submit" class="btn btn-primary" name="button">Update</button>
-  </form>
+
 </section>

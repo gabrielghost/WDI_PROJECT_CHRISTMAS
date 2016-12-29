@@ -29,6 +29,7 @@ app.set('views', `${__dirname}/views`);
 app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/bower_components`));
 app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/src`));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride((req, res) => {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
