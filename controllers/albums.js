@@ -1,15 +1,6 @@
 const Album = require('../models/album.js');
 const Artist = require('../models/artist.js');
 
-//INDEX
-
-function albumsIndex(req, res){
-  Album.find({}, (err, albums) => {
-    if (err) return res.render('albums/index', { albums: null, error: 'Something went wrong' });
-    return res.render('albums/index', { albums });
-  });
-}
-
 //NEW
 
 function albumsNew(req, res) {
@@ -28,7 +19,17 @@ function albumsCreate(req, res){
     return res.redirect('/albums');
   });
 }
+//index
 
+function albumsIndex(req, res){
+  Album
+  .find({})
+  .populate(['artist'])
+  .exec((err, albums) => {
+    if (err) return res.render('albums/index', { albums: null, error: 'Something went wrong' });
+    return res.render('albums/index', { albums });
+  });
+}
 //SHOW
 
 function albumsShow(req, res) {
@@ -70,10 +71,10 @@ function albumsUpdate(req, res){
       }
     }
 
-      album.save((err, album) => {
-        if (err) return res.render('albums/edit', { album: {}, error: 'Something went wrong.' });
-        return res.redirect(`/albums/${album._id}`);
-      });
+    album.save((err, album) => {
+      if (err) return res.render('albums/edit', { album: {}, error: 'Something went wrong.' });
+      return res.redirect(`/albums/${album._id}`);
+    });
   });
 }
 

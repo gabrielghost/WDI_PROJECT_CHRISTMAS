@@ -3,6 +3,7 @@ const router  = express.Router();
 
 const albums  = require('../controllers/albums');
 const artists  = require('../controllers/artists');
+const tracks  = require('../controllers/tracks');
 
 router.route('/').get((req, res) => res.render('home'));
 
@@ -17,6 +18,9 @@ router.route('/albums/:id')
 .delete(albums.delete);
 router.route('/albums/:id/edit')
 .get(albums.edit);
+
+router.route('/albums/:id/tracks')
+  .post(tracks.create);
 
 router.route('/artists')
   .get(artists.index)

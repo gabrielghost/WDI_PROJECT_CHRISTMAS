@@ -29,7 +29,21 @@
       <textarea type="text" class="form-control" id="comments" name="album[comments]" placeholder="comments"></textarea>
       <div class="form-group">
   </div>
+  <h2>Add track</h2>
+    <form action="/albums/<%= album._id %>/tracks" method="post">
+      <div class="form-group">
+        <label for="track_name">track name</label>
+        <input type="text" class="form-control" id="track_name" name="tracks[name]" placeholder="track name">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
+    <h2>Other tracks</h2>
+    <ul class="list-unstyled">
+      <% album.tracks.forEach(track => { %>
+        <li><%= tracks.track_name %></li>
+      <% }) %>
+    </ul>
   <%# <div class="form-group">
     <label for="artwork">Artwork</label>
     <input type="file" class="form-control" id="artwork" name="album[artwork]">
