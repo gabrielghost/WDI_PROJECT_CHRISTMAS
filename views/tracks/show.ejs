@@ -2,11 +2,11 @@
   <div class="alert alert-danger text-center" role="alert"><%= error %></div>
 <% } %>
 <section class="container">
-  <h3><%= track.track_name %></h3>
-  <h3><%= track.track_number %></h3>
-  <h3><%= track.track_duration %></h3>
-  <h3><%= track.album_name %></h3>
-  <h3><%= track.artist_name %></h3>
+  <h5>Track name</h5><p><%= track.track_name %></p>
+  <h5>Track number</h5><p><%= track.track_number %></p>
+  <h5>Album name</h5><p><%= track.album_name.album_name %></p>
+<h5>Artist name</h5><p><%= track.album_name.artist %></p>
+  <h5>Track duration (in s) </h5><p><%= track.track_duration %></p>
   <ul class="list-inline">
     <li><a class="btn btn-primary" href="/tracks/<%= track._id %>/edit">Edit</a></li>
     <li>

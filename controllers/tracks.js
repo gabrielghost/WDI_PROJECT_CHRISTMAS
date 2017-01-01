@@ -21,7 +21,10 @@ function tracksCreate(req, res) {
 }
 
 function tracksIndex(req, res) {
-  Track.find({}, (err, tracks) => {
+  Track
+  .find({})
+  .populate(['album_name', 'artist'])
+  .exec((err, tracks) => {
     if (err) return res.render('tracks/index', { tracks: null, error: 'Something went wrong.' });
     return res.render('tracks/index', { tracks });
   });
@@ -30,7 +33,7 @@ function tracksIndex(req, res) {
 function tracksShow(req, res) {
   Track
   .findById(req.params.id)
-  .populate(['artist_name'])
+  .populate(['album_name', 'artist'])
   .exec((err, track) => {
     if (err) return res.render('tracks/show', { track: {}, error: 'Something went wrong.' });
     if (!track) return res.render('tracks/show', { track: {}, error: 'No track was found!' });
