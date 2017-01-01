@@ -1,19 +1,86 @@
-const Album = require('../models/album');
+const Track = require('../models/track');
+const Album = require('../models/album.js');
+const Artist = require('../models/artist.js');
 
-function tracksCreate(req, res) {
-  Album.findById(req.params.id, (err, album) => {
-    if (err) return res.render('albums/show', { album: {}, error: 'Something went wrong.' });
-    if (!album) return res.render('albums/show', { album: {}, error: 'No album was found!' });
-
-    album.tracks.push(req.body.track);
-
-    album.save((err, album) => {
-      if (err) return res.render('albums/show', { album: {}, error: 'Something went wrong.' });
-      return res.redirect(`/albums/${album._id}`);
+function tracksNew(req, res) {
+  Artist.find({}, (err, artists) => {
+    if (err) return res.render('tracks/new', { error: err.message });
+    Album.find({}, (err, albums) => {
+      if (err) return res.render('tracks/new', { error: err.message });
+      return res.render('tracks/new', { error: null, albums, artists });
     });
   });
 }
 
+function tracksCreate(req, res) {
+  const track = new Track(req.body.track);
+  track.save(err => {
+    if (err) return res.render('tracks/new', { error: err.message });
+    return res.redirect('/tracks');
+  });
+}
+
+function tracksIndex(req, res) {
+  Track.find({}, (err, tracks) => {
+    if (err) return res.render('tracks/index', { tracks: null, error: 'Something went wrong.' });
+    return res.render('tracks/index', { tracks });
+  });
+}
+
+function tracksShow(req, res) {
+  Track
+  .findById(req.params.id)
+  .populate(['artist_name'])
+  .exec((err, track) => {
+    if (err) return res.render('tracks/show', { track: {}, error: 'Something went wrong.' });
+    if (!track) return res.render('tracks/show', { track: {}, error: 'No track was found!' });
+    return res.render('tracks/show', { track, error: null });
+  });
+}
+
+
+
+function tracksEdit(req, res) {
+  Track.findById(req.params.id, (err, track) => {
+    if (err) return res.render('tracks/edit', { track: {}, error: 'Something went wrong.' });
+    if (!track) return res.render('tracks/edit', { track: {}, error: 'No director was found!' });
+    return res.render('tracks/edit', { track, error: null });
+  });
+}
+
+function tracksUpdate(req, res) {
+  Track.findById(req.params.id, (err, track) => {
+    if (err) return res.render('tracks/edit', { track: {}, error: 'Something went wrong.' });
+    if (!track) return res.render('tracks/edit', { track: {}, error: 'No track was found!' });
+
+    for (const field in Track.schema.paths) {
+      if ((field !== '_id') && (field !== '__v')) {
+        if (req.body.track[field] !== undefined) {
+          track[field] = req.body.track[field];
+        }
+      }
+    }
+
+    track.save((err, track) => {
+      if (err) return res.render('tracks/edit', { track: {}, error: 'Something went wrong.' });
+      return res.redirect(`/tracks/${track._id}`);
+    });
+  });
+}
+
+function tracksDelete(req, res) {
+  Track.findByIdAndRemove(req.params.id, err => {
+    if (err) return res.render('tracks/show', { track: {}, error: 'Something went wrong.' });
+    return res.redirect('/tracks');
+  });
+}
+
 module.exports = {
-  create: tracksCreate
+  index: tracksIndex,
+  new: tracksNew,
+  create: tracksCreate,
+  show: tracksShow,
+  edit: tracksEdit,
+  update: tracksUpdate,
+  delete: tracksDelete
 };

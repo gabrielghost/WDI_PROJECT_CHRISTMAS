@@ -19,8 +19,17 @@ router.route('/albums/:id')
 router.route('/albums/:id/edit')
 .get(albums.edit);
 
-router.route('/albums/:id/tracks')
+router.route('/tracks')
+  .get(tracks.index)
   .post(tracks.create);
+router.route('/tracks/new')
+.get(tracks.new);
+router.route('/tracks/:id')
+.get(tracks.show)
+.put(tracks.update)
+.delete(tracks.delete);
+router.route('/tracks/:id/edit')
+.get(tracks.edit);
 
 router.route('/artists')
   .get(artists.index)

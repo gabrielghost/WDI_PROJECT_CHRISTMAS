@@ -4,8 +4,8 @@
 <section class="container">
   <form class="" action="/tracks" method="post">
   <div class="form-group">
-          <label for="title"></label>
-      <input type="text" class="form-control" id="title" name="track[title]" placeholder="title">
+          <label for="track_name"></label>
+      <input type="text" class="form-control" id="track_name" name="track[track_name]" placeholder="track name">
   </div>
   <div class="form-group">
           <label for="track_number"></label>
@@ -15,19 +15,23 @@
           <label for="duration"></label>
       <input type="number" class="form-control" id="duration" name="track[duration]" placeholder="duration">
   </div>
+
   <div class="form-group">
-    <label for="album_name">Album name</label>
-    <select class="form-control" id="album_name" name="album[album_name]">
-      <% albums.forEach(album => { %>
-        <option value="<%= album._id %>"><%= album.album_name %></option>
-      <% }) %>
-    </select>
-  </div>
-  <%# <div class="form-group">
-    <label for="artwork">Artwork</label>
-    <input type="file" class="form-control" id="artwork" name="album[artwork]">
-    <p class="help-block"></p>
-  </div>%>
+  <label for="artist_name">Artist Name (DB)</label>
+  <select class="form-control" id="artist_name" name="track[artist]">
+    <% artists.forEach(artist => { %>
+      <option value="<%= artist._id %>"><%= artist.artist_name %></option>
+    <% }) %>
+  </select>
+</div>
+  <div class="form-group">
+  <label for="album_name">Album name</label>
+  <select class="form-control" id="album_name" name="track[album_name]">
+    <% albums.forEach(album => { %>
+      <option value="<%= album._id %>"><%= album.album_name %></option>
+    <% }) %>
+  </select>
+</div>
   <button type="submit" class="btn btn-primary" name="button">Submit</button>
   </form>
 </section>

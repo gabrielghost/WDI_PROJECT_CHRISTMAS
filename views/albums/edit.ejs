@@ -2,43 +2,46 @@
 <div class="elert alert-danger text-center" role="alert"><%= error %></div>
 <% } %>
 <section class="container">
+  <div class="album_info">
+    <div class="form-group">
+            <label for="artwork"></label>
+        <input value='<%= album.artwork %>' type="text" class="form-control" id="artwork" name="album[artwork]" placeholder="artwork">
+    </div>
   <form action="/albums/<%= album._id %>" method="post">
     <input type="hidden" name="_method" value="put">
   <div class="form-group">
-          <label for="album_name">Album name</label>
+          <label for="album_name"></label>
       <input type="text" value='<%= album.album_name %>' class="form-control" id="album_name" name="album[album_name]" placeholder="album name">
   </div>
-  <div class="form-group">
-          <label for="artist_name">Artist Name</label>
-      <input value='<%= album.artist_name %>'type="text" class="form-control" id="artist_name" name="album[artist_name]" placeholder="artist name">
-  </div>
    <div class="form-group">
-     <label for="artist_name">Artist (db)</label>
+     <label for="artist_name"></label>
      <select class="form-control" id="artist_name" name="album[name]">
        <% artists.forEach(artist => { %>
          <option value="<%= artist._id %>" <%= album.artist.toString() === artist._id.toString() ? "selected" : "" %>><%= artist.name %></option>
        <% }) %>
      </select>
    </div>
-  <div class="form-group">
-          <label for="artwork">Artwork</label>
-      <input value='<%= album.artwork %>' type="text" class="form-control" id="artwork" name="album[artwork]" placeholder="artwork">
-  </div>
-  <div class="form-group">
-          <label for="comments"></label>
-      <textarea type="text" class="form-control" id="comments" name="album[comments]" placeholder="comments"></textarea>
-      <div class="form-group">
-  </div>
-  <button type="submit" class="btn btn-primary" name="button">Update</button>
+  <li><button type="submit" class="btn btn-primary" name="button">Update</button></li>
   </form>
+    <form action="/albums/<%= album._id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <li><button class="btn btn-danger">Delete</button></li>
+    </form>
+</div>
   <div class="album_tracks">
     <ul class="list-tracks">
       <% album.tracks.forEach(track => { %>
+        <form action="/albums/<%= album._id %>/tracks" method="post">
+        <div class="form-group">
         <ul class='track'>
-        <li class='col-md-1'><%= track.track_number %></li>
-        <li class='col-md-9'><%= track.track_name %></li>
-        <li class='col-md-2'><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></li>
-        </ul>
+        <li class='col-md-2'><input type="text" class="form-control" id="track_name" name="track[track_name]" value='<%= track.track_number %>'>
+      </li>
+        <li class='col-md-4'><input type="text" class="form-control" id="track_name" name="track[track_name]" value='<%= track.track_name %>'>
+      </li>
+        <li class='col-md-2'><input type="text" class="form-control" id="track_name" name="track[track_name]" value='<%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%>'>
+      </li>
+      </div>
+      </ul>
       <% }) %>
     </ul>
   </div>

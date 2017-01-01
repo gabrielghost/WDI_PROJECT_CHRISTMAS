@@ -38,7 +38,7 @@ function albumsShow(req, res) {
   .populate(['artist'])
   .exec((err, album) => {
     if (err) return res.render('albums/show', { album: {}, error: 'Something went wrong.' });
-    if (!album) return res.render('albums/show', { album: {}, error: 'No movie was found!' });
+    if (!album) return res.render('albums/show', { album: {}, error: 'No album was found' });
     return res.render('albums/show', { album, error: null });
   });
 }
