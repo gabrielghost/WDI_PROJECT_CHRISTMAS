@@ -38,4 +38,8 @@
 </div>
   <button type="submit" class="btn btn-primary" name="button">Update</button>
   </form>
+  <form action="/tracks/<%= track._id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="btn btn-danger">Delete</button>
+  </form>
 </section>

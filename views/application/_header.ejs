@@ -9,27 +9,42 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/albums">Music_Library</a>
+        <a class="navbar-brand" href="/albums">musicLibrary_</a>
       </div>
-
       <!-- Collect the nav links, forms, and other content for toggling -->
-        <form class="navbar-form navbar-left">
+        <form class="navbar-form navbar-right">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <%# <button type="submit" class="btn btn-default">Submit</button>%>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/albums">Albums</a></li>
-          <li><a href="/albums/new">Add Album</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Albums <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="/albums">Albums</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a href="/albums/new">Add Album</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artists <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/artists">Artist</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/artists/new">Add Artist</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tracks <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/tracks">Tracks</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/tracks/new">Add Track</a></li>
             </ul>
           </li>
         </ul>

@@ -10,16 +10,6 @@
       <li><a class="btn btn-primary" href="/albums/<%= album._id %>/edit">Edit</a></li>
     </ul>
   </div>
-  <div class="album_tracks">
-    <ul class="list-tracks">
-      <% album.tracks.forEach(track => { %>
-        <ul class='track'>
-        <li class='col-md-1'><%= track.track_number %></li>
-        <li class='col-md-9'><%= track.track_name %></li>
-        <li class='col-md-2'><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></li>
-        </ul>
-      <% }) %>
-    </ul>
-  </div>
+
 
 </section>
