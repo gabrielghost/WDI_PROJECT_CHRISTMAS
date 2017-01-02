@@ -47,7 +47,7 @@ function albumsShow(req, res) {
 function albumsEdit(req, res) {
   Album.findById(req.params.id, (err, album) => {
     if (err) return res.render('albums/edit', { album: {}, error: 'Something went wrong.' });
-    if (!album) return res.render('albums/edit', { album: {}, error: 'No movie was found!' });
+    if (!album) return res.render('albums/edit', { album: {}, error: 'No album was found!' });
     Artist.find({}, (err, artists) => {
       if (err) return res.render('albums/new', { error: err.message });
       return res.render('albums/edit', { album, artists, error: null });

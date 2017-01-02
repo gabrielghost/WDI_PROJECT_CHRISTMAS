@@ -1,6 +1,6 @@
 <section class="container">
 <h1>tracks</h1>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" data-mobile-responsive="true">
    <thead class="thead-default">
 <tr>
   <th>No.</th>
@@ -8,6 +8,9 @@
   <th>Album</th>
   <th>Artist</th>
   <th>Duration</th>
+  <th>Audio URL</th>
+  <th>Audio</th>
+  <th>Actions</th>
 </tr>
 </thead>
 <tbody>
@@ -19,7 +22,10 @@
   <td><%= track.track_name %></td>
   <td><%= track.album_name.album_name %></td>
   <td><%= track.album_name.artist %></td>
-  <td><%= track.track_duration %></td>
+  <td><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></td>
+  <td><%= track.audio_path %></td>
+  <td><audio controls><source src="<%= track.audio_path %>" type="audio/mpeg"></audio><td>
+  <td><a href='/tracks/<%=track._id %>/edit'>Edit</a></td>
   </tr>
 <% if (i === original.length-1) { %>
 

@@ -1,21 +1,29 @@
-<% if (error) { %>
-  <div class="alert alert-danger text-center" role="alert"><%= error %></div>
-<% } %>
 <section class="container">
-  <h5>Track name</h5><p><%= track.track_name %></p>
-  <h5>Track number</h5><p><%= track.track_number %></p>
-  <h5>Album name</h5><p><%= track.album_name.album_name %></p>
-<h5>Artist name</h5><p><%= track.album_name.artist %></p>
-  <h5>Track duration (in s) </h5><p><%= track.track_duration %></p>
-  <ul class="list-inline">
-    <li><a class="btn btn-primary" href="/tracks/<%= track._id %>/edit">Edit</a></li>
-    <li>
-    <li><a class="btn btn-primary" href="/tracks/<%= track._id %>/edit">Edit</a></li>
-    <li>
-      <form action="/tracks/<%= track._id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button class="btn btn-danger">Delete</button>
-      </form>
-    </li>
-  </ul>
+<h1>tracks</h1>
+<a href='/tracks'>all tracks</a>
+<table class="table table-striped table-hover" data-mobile-responsive="true">
+   <thead class="thead-default">
+<tr>
+  <th>No.</th>
+  <th>Title</th>
+  <th>Album</th>
+  <th>Artist</th>
+  <th>Duration</th>
+  <th>Audio URL</th>
+  <th>Audio</th>
+  <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+  <tr>
+  <td><%= track.track_number %></td>
+  <td><%= track.track_name %></td>
+  <td><%= track.album_name.album_name %></td>
+  <td><%= track.album_name.artist %></td>
+  <td><%= track.track_duration %></td>
+  <td><%= track.audio_path %></td>
+  <td><a href='/tracks/<%=track._id %>/edit'>Edit</a></td>
+  </tr>
+</tbody>
+</table>
 </section>

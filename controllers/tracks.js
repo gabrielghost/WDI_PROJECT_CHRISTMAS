@@ -43,13 +43,22 @@ function tracksShow(req, res) {
 
 
 
+
+
 function tracksEdit(req, res) {
   Track.findById(req.params.id, (err, track) => {
     if (err) return res.render('tracks/edit', { track: {}, error: 'Something went wrong.' });
-    if (!track) return res.render('tracks/edit', { track: {}, error: 'No director was found!' });
-    return res.render('tracks/edit', { track, error: null });
+    if (!track) return res.render('tracks/edit', { album: {}, error: 'No track was found!' });
+    Artist.find({}, (err, artists) => {
+      if (err) return res.render('albums/new', { error: err.message });
+      Album.find({}, (err, albums) => {
+        if (err) return res.render('albums/new', { error: err.message });
+        return res.render('tracks/edit', { track, albums, artists, error: null });
+      });
+    });
   });
 }
+
 
 function tracksUpdate(req, res) {
   Track.findById(req.params.id, (err, track) => {
@@ -66,7 +75,7 @@ function tracksUpdate(req, res) {
 
     track.save((err, track) => {
       if (err) return res.render('tracks/edit', { track: {}, error: 'Something went wrong.' });
-      return res.redirect(`/tracks/${track._id}`);
+      return res.redirect(`/tracks`);
     });
   });
 }
