@@ -17,6 +17,10 @@
       <input type="number" value='<%= track.track_duration %>' class="form-control" id="track_duration" name="track[track_duration]" placeholder="track_duration">
   </div>
   <div class="form-group">
+          <label for="album_name"></label>
+      <input type="text" value='<%= track.album_name %>' class="form-control" id="album_name" name="track[album_name]" placeholder="album_name">
+  </div>
+  <div class="form-group">
   <label for="artist_name">Artist Name (DB)</label>
   <select class="form-control" id="artist_name" name="track[artist]">
     <% artists.forEach(artist => { %>

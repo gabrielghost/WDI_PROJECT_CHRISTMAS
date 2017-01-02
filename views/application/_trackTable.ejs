@@ -6,9 +6,8 @@
   <th>Album</th>
   <th>Artist</th>
   <th><img src="images/duration_logo.png" alt="" width="15px"></th>
-  <th>Audio URL</th>
   <th>Audio</th>
-  <th>Actions</th>
+  <th></th>
 </tr>
 </thead>
 <tbody>
@@ -19,11 +18,10 @@
   <td><%= track.track_number %></td>
   <td><%= track.track_name %></td>
   <td><%= track.album_name.album_name %></td>
-  <td><%= track.album_name.artist %></td>
+  <td><%= track.artist.name %></td>
   <td><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></td>
-  <td><%= track.audio_path %></td>
   <td><audio controls><source src="<%= track.audio_path %>" type="audio/mpeg"></audio><td>
-  <td><a href='/tracks/<%=track._id %>/edit'>Edit</a></td>
+  <td><a href='/tracks/<%=track._id %>/edit'>edit</a></td>
   </tr>
 <% if (i === original.length-1) { %>
 

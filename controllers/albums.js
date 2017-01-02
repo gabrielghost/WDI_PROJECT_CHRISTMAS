@@ -1,5 +1,6 @@
 const Album = require('../models/album.js');
 const Artist = require('../models/artist.js');
+const Track = require('../models/track.js');
 
 //NEW
 
@@ -33,15 +34,23 @@ function albumsIndex(req, res){
 //SHOW
 
 function albumsShow(req, res) {
+  var id = req.params.id;
   Album
-  .findById(req.params.id)
+  .findById(id)
   .populate(['artist'])
   .exec((err, album) => {
     if (err) return res.render('albums/show', { album: {}, error: 'Something went wrong.' });
     if (!album) return res.render('albums/show', { album: {}, error: 'No album was found' });
-    return res.render('albums/show', { album, error: null });
+    Track
+    .find({album_name: id})
+    .populate(['artist', 'album_name'])
+    .exec((err, tracks) => {
+      if (!tracks) return res.render('albums/show', { album: {}, error: 'No tracks were found' });
+      return res.render('albums/show', { album, tracks, error: null });
+    });
   });
 }
+
 //EDIT
 
 function albumsEdit(req, res) {
