@@ -17,10 +17,6 @@
       <input type="number" value='<%= track.track_duration %>' class="form-control" id="track_duration" name="track[track_duration]" placeholder="track_duration">
   </div>
   <div class="form-group">
-          <label for="album_name"></label>
-      <input type="text" value='<%= track.album_name %>' class="form-control" id="album_name" name="track[album_name]" placeholder="album_name">
-  </div>
-  <div class="form-group">
   <label for="artist_name">Artist Name (DB)</label>
   <select class="form-control" id="artist_name" name="track[artist]">
     <% artists.forEach(artist => { %>
@@ -40,10 +36,16 @@
         <label for="audio_path"></label>
     <input type="text" class="form-control" id="audio_path" name="track[audio_path]" value='<%= track.audio_path %>' placeholder="audio">
 </div>
+<div class="form-group">
+    <label for="audio_data">mp3</label>
+    <input type="file" id="audio_data">
+    <p class="help-block">Upload mp3s less than 16mb.</p>
+  </div>
   <button type="submit" class="btn btn-primary" name="button">Update</button>
   </form>
   <form action="/tracks/<%= track._id %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <button class="btn btn-danger">Delete</button>
   </form>
+
 </section>

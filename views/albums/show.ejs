@@ -3,12 +3,10 @@
 <% } %>
 <section class="container">
   <div class="album_info">
-    <img src=<%= album.artwork %> height="100">
+    <img src='<%= album.artwork %>' height="100">
     <h3><%= album.album_name %></h3>
     <h3><a href="/artists/<%= album.artist._id %>"><%= album.artist.name %></a></h3>
-    <ul class="list-inline">
-      <li><a class="btn btn-primary" href="/albums/<%= album._id %>/edit">Edit</a></li>
-    </ul>
+    <a href="/albums/<%= album._id %>/edit">edit</a>
   </div>
   <div class="trackList">
     <%- include ../application/_trackTable %>

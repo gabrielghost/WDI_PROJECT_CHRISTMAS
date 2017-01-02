@@ -10,4 +10,12 @@
   </div>
   <button type="submit" class="btn btn-primary" name="button">Update</button>
   </form>
+  <ul class="list-inline">
+    <li>
+      <form action="/artists/<%= artist._id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </li>
+  </ul>
 </section>

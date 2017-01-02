@@ -21,49 +21,11 @@
        <% }) %>
      </select>
    </div>
-  <li><button type="submit" class="btn btn-primary" name="button">Update</button></li>
+  <button type="submit" class="btn btn-primary" name="button">Update</button>
   </form>
     <form action="/albums/<%= album._id %>" method="post">
       <input type="hidden" name="_method" value="delete">
-      <li><button class="btn btn-danger">Delete</button></li>
+      <button class="btn btn-danger">Delete</button>
     </form>
 </div>
-  <div class="album_tracks">
-    <ul class="list-tracks">
-      <% album.tracks.forEach(track => { %>
-        <form action="/albums/<%= album._id %>/tracks" method="post">
-        <div class="form-group">
-        <ul class='track'>
-        <li class='col-md-2'><input type="text" class="form-control" id="track_name" name="track[track_name]" value='<%= track.track_number %>'>
-      </li>
-        <li class='col-md-4'><input type="text" class="form-control" id="track_name" name="track[track_name]" value='<%= track.track_name %>'>
-      </li>
-        <li class='col-md-2'><input type="text" class="form-control" id="track_name" name="track[track_name]" value='<%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%>'>
-      </li>
-      </div>
-      </ul>
-      <% }) %>
-    </ul>
-  </div>
-  <h2>Add track</h2>
-    <form action="/albums/<%= album._id %>/tracks" method="post">
-      <div class="form-group">
-        <label for="track_name">track name</label>
-        <input type="text" class="form-control" id="track_name" name="track[track_name]" placeholder="track name">
-      </div>
-        <label for="track_duration">track duration</label>
-        <input type="number" class="form-control" id="track_duration" name="track[track_duration]" placeholder="track duration">
-      </div>
-      </div>
-        <label for="track_number">track number</label>
-        <input type="number" class="form-control" id="track_number" name="track[track_number]" placeholder="track number">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  <%# <div class="form-group">
-    <label for="artwork">Artwork</label>
-    <input type="file" class="form-control" id="artwork" name="album[artwork]">
-    <p class="help-block"></p>
-  </div>%>
-
 </section>

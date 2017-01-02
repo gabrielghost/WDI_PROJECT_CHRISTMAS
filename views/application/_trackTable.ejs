@@ -5,8 +5,9 @@
   <th>Song</th>
   <th>Album</th>
   <th>Artist</th>
-  <th><img src="images/duration_logo.png" alt="" width="15px"></th>
+  <th><img src="http://www.iconsdb.com/icons/preview/black/clock-3-xxl.png" alt="" width="15px"></th>
   <th>Audio</th>
+  <th>Audio_string</th>
   <th></th>
 </tr>
 </thead>
@@ -17,10 +18,11 @@
   <tr>
   <td><%= track.track_number %></td>
   <td><%= track.track_name %></td>
-  <td><%= track.album_name.album_name %></td>
-  <td><%= track.artist.name %></td>
+  <td><a href='/albums/<%=track.album_name.id%>'><%= track.album_name.album_name %></a></td>
+  <td><a href='/artists/<%=track.artist._id%>'><%= track.artist.name %></a></td>
   <td><%= Math.floor(track.track_duration/60)%><%= (((track.track_duration%60/100).toFixed(2)).toString()).slice(1)%></td>
   <td><audio controls><source src="<%= track.audio_path %>" type="audio/mpeg"></audio><td>
+  <td><%=track.audio_data%></td>
   <td><a href='/tracks/<%=track._id %>/edit'>edit</a></td>
   </tr>
 <% if (i === original.length-1) { %>
